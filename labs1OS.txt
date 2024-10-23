@@ -1,0 +1,47 @@
+За дома>
+Задача 1: 
+firefox &
+ps
+kill <PID>
+
+Задача 2:
+ls | grep '\.c$'
+
+Задача 3:
+sed 's/[a-zA-Z0-9._]\+@/?@/g' vezba12.txt
+
+За час:
+Задача 1:
+1.1 ps -u root
+1.2 ls -R | grep '\.c$'
+1.3 
+1.4
+
+Задача 2:
+awk '{ avg = ($3 + $4 + $5) / 3; printf "<%s %s> %.4f\n", $1, $2, avg }' vezba11.txt
+
+
+Задача 3:
+
+#!/bin/bash
+
+if [ -n "$1" ]; then
+    file=$1
+else
+    file=$(find / -name "naredbi.txt")
+
+    if [ -f "$file" ]; then
+        if [ "$(dirname "$file")" != "." ]; then
+            cp "$file" .
+        fi
+    else
+        echo "Datotekata 'naredbi.txt' ne e pronajdena"
+        exit 1
+    fi
+fi
+
+if [ -f "$file" ]; then
+    cat "$file"
+else
+    echo "Datotekata ne e pronajdena"
+fi
