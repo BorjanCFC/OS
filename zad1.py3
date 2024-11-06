@@ -2,7 +2,7 @@ import sys
 
 def reverse_word_order(file_paths):
     if len(file_paths) < 2:
-        print("Error: Script must be called with at least two file path arguments.")
+        print("Грешка: Скриптата мора да се повика со најмалку два патеки на датотеки како аргументи.")
         return
 
     for file_path in file_paths:
@@ -14,5 +14,4 @@ def reverse_word_order(file_paths):
         with open(file_path, 'w') as file:
             file.write('\n'.join(modified_lines))
 
-if __name__ == "__main__":
-    reverse_word_order(sys.argv[1:])
+reverse_word_order(sys.argv[1:])
