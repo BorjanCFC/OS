@@ -6,8 +6,8 @@
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
-        printf("Usage: %s command [args...]\n", argv[0]);
-        return 1;
+        printf("Nedovolen broj na argumenti\n",);
+        return 0;
     }
 
     int N;
