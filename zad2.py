@@ -1,27 +1,32 @@
 import sys
-from collections import defaultdict
 
 def print_creation_modification_dates(file_path, flag):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
-    dates = defaultdict(list)
+        new_lines = []
+        dates = {}
+
     for line in lines:
-        parts = line.strip().split()
-        if len(parts) >= 8:
-            date = ' '.join(parts[5:8])
-            item = ' '.join(parts[8:])
-            dates[date].append(item)
+        line = line.split()
+        new_lines.append(line)
+
+        if line[5] not in dates:
+            dates[lines[5]] = 0
+
 
     if flag == '-d':
-        for date, items in dates.items():
-            print(f"Datum: {date}")
-            print('\n'.join(items))
-            print()
+        for line in new_lines:
+            print(line[7] + " : " + line[5])
+
+
     elif flag == '-f':
-        for date, items in dates.items():
-            for item in items:
-                print(f"{item} - {date}")
+        for line in new_lines:
+            dates[line[5]] += 1
+
+
+
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
