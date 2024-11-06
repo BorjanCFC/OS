@@ -1,7 +1,7 @@
 import sys
 from collections import defaultdict
 
-def print_creation_modification_dates(file_path, flag):
+def func(file_path, flag):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
@@ -24,10 +24,8 @@ def print_creation_modification_dates(file_path, flag):
                 print(f"{item} - {date}")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Upotreba: python script.py <putanja_datoteke> <-d|-f>")
-        sys.exit(1)
-
+   
     file_path = sys.argv[1]
     flag = sys.argv[2]
-    print_creation_modification_dates(file_path, flag)
+
+    func(file_path, flag)
