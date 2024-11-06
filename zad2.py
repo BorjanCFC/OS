@@ -1,36 +1,44 @@
 import sys
 
 def print_creation_modification_dates(file_path, flag):
-    with open(file_path, 'r') as file:
-        lines = file.readlines()
+    try:
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
 
         new_lines = []
         dates = {}
 
-    for line in lines:
-        line = line.split()
-        new_lines.append(line)
+        # Process each line
+        for line in lines:
+            line = line.split()  # Splitting the line into columns
+            new_lines.append(line)
 
-        if line[5] not in dates:
-            dates[lines[5]] = 0
+            if len(line) > 5:  # Ensure there's enough data in the line
+                date = line[5]  # Assuming line[5] contains the date
+                if date not in dates:
+                    dates[date] = 0
 
+        # Processing flags
+        if flag == '-d':  # Print the date and associated information
+            for line in new_lines:
+                if len(line) > 7:  # Ensure there are enough columns
+                    print(f"{line[7]} : {line[5]}")
 
-    if flag == '-d':
-        for line in new_lines:
-            print(line[7] + " : " + line[5])
+        elif flag == '-f':  # Count occurrences of each date
+            for line in new_lines:
+                if len(line) > 5:
+                    dates[line[5]] += 1
 
+            # Print the date count
+            for date, count in dates.items():
+                print(f"{date}: {count}")
 
-    elif flag == '-f':
-        for line in new_lines:
-            dates[line[5]] += 1
-
-
-
-
+    except Exception as e:
+        print(f"Error: {e}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Upotreba: python script.py <putanja_datoteke> <-d|-f>")
+        print("Usage: python script.py <file_path> <-d|-f>")
         sys.exit(1)
 
     file_path = sys.argv[1]
