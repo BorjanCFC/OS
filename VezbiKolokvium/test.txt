@@ -1,0 +1,4 @@
+Ova e primer tekst. Ovoj tekst se koristi za testiranje na programata. 
+Zborot tekst se pojavuva poveke pati vo ovoj tekst. 
+Se nadevam deka testiranjeto ke bide uspesno.
+Bi trebalo ovoj tekst da bide uspesen test.
