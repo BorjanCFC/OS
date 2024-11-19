@@ -9,6 +9,10 @@
 
 import sys
 
+if len(sys.argv) < 4:
+    print ("Nedovolno argumenti")
+    sys.exit()
+
 dat1 = open(sys.argv[1], "r")
 dat2 = open(sys.argv[2], "r")
 dat3 = open(sys.argv[3], "w")
