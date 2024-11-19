@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <unistd.h> 
 #include <string.h>
-// #include <sys/wait.h>
+#include <sys/wait.h>
 #define MSGSIZE 16 
 
 int main(int argc, char *argv[]) {
