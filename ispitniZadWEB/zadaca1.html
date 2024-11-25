@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Погоди го бројот!</title>
+
+	<style>
+		html {
+	font-family: sans-serif;
+	}
+	
+		body {
+	width: 50%;
+	max-width: 800px;
+	min-width: 480px;
+	margin: 0 auto;
+	}
+	</style>
+</head>
+
+<body>
+
+	<h1>Погоди го бројот</h1><br>
+
+	<div id="game">
+        <strong><p>Избран е случаен број од 1 до 10. Обиди се да го погодиш.</p></strong>
+		<strong><p>Внеси број: <input id="myGuess" type="text" min="1" max="10"> <button class = "guess-button" onclick="GuessNum()">Submit Guess</button> <span id = "GuessNumber"></span></p></strong>
+    </div>
+
+
+	<script type="text/javascript">
+		var random_num = Math.floor((Math.random() * 10) + 1);
+		console.log(random_num)
+		var numGuesses = 0;
+	
+		function GuessNum() {
+			var myGuess = document.getElementById("myGuess").value;
+	
+			if (!myGuess || myGuess < 1 || myGuess > 10) {
+				alert("ВНЕСЕТЕ ВАЛИДЕН БРОЈ ПОМЕЃУ 1 И 10.");
+				document.getElementById("myGuess").value = '';
+				return
+			}
+	
+			myGuess = parseInt(myGuess);
+			numGuesses++;
+	
+			if (myGuess === random_num) {
+				alert(`ЧЕСТИТКИИ! ГО ПОГОДИ БРОЈОТ ОД ${numGuesses} ОБИДИ.`);
+				document.getElementById("myGuess").value = '';
+			} else if (myGuess < random_num) {
+				alert("ГРЕШКА! ОБИДИ СЕ СО ПОГОЛЕМ БРОЈ.");
+				document.getElementById("myGuess").value = '';
+			} else {
+				alert("ГРЕШКА! ОБИДИ СЕ СО ПОМАЛ БРОЈ.");
+				document.getElementById("myGuess").value = '';
+			}
+		}
+
+	</script>
+	
+</body>
+</html>					

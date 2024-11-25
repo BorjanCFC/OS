@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прв парцијален испит</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            color: darkblue;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #b3d9ff;
+            border-bottom: 5px solid darkblue;
+        }
+
+        header h1 {
+            font-size: 32px;
+            color: darkblue;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        header nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        header nav a {
+            color: darkblue;
+            text-decoration: none;
+            font-weight: normal;
+            font-size: 22px;
+            text-align: justify;
+            transition: all 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: goldenrod;
+            font-weight: bold;
+        }
+
+        #main {
+            background-image: url('slika2.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 1200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        #main h2 {
+            font-size: 66px;
+            color: darkblue;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #main p {
+            font-size: 28px;
+            color: darkblue;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #yourInfo {
+            background-image: url('slika2.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 60px;
+        }
+
+        .form-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .form-section {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        .form-section h3 {
+            color: darkblue;
+            margin: -10px -10px 10px -10px;
+            padding: 5px 10px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: darkblue;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background-color: #b3d9ff;
+            border: 1px solid gray;
+            padding: 8px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #0000cd;
+            font-size: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #0000cd;
+            color: white;
+        }
+
+        #shop {
+            background-image: url('slika2.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 60px;
+            font-size: 26px;
+        }
+
+        #shop #quantity, #shop #Unit-Price, #shop #productName {
+            width: 200px;
+            height: 30px;
+        }
+
+        #shop button {
+            background-color: #b3d9ff;
+            border: 1px solid gray;
+            padding: 8px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #0000cd;
+            font-size: 20px;
+        }
+
+        #shop button:hover {
+            background-color: #0000cd;
+            color: white;
+        }
+
+        fieldset {
+            border: 2px solid gray;
+            margin: 0;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        legend {
+            color: darkblue;
+            font-weight: bold;
+            font-size: 22px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 80%;
+            text-align: center;
+        }
+
+        th, td {
+            border: 3px solid black;
+            padding: 10px;
+        }
+
+
+        td {
+            font-size: 24px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(179, 217, 255, 0.9);
+            border-top: 5px solid darkblue;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: auto;
+        }
+
+        footer .Copyright p {
+            font-size: 22px;
+            color: darkblue;
+            font-weight: bold;
+            margin: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Основи на WEB програмирање</h1>
+        <nav>
+            <a href="#" onclick="showHome()">ДОМА</a>
+            <a href="#" onclick="showInfo()">ВАШИ ПОДАТОЦИ</a>
+            <a href="#" onclick="showShop()">ПРОДАВНИЦА</a>
+        </nav>
+    </header>
+
+    <div id="main">
+        <h2>Прв парцијален испит</h2>
+        <p>Основни елементи од HTML, CSS и JavaScript</p>
+    </div>
+
+    <div id="yourInfo">
+        <div class="form-container">
+            <form>
+                <fieldset>
+                    <legend>Пополнете ја следнава форма:</legend>
+                    <div class="form-section">
+                        <fieldset>
+                            <legend>Лични информации:</legend>
+                            <div class="form-group">
+                                <label for="ime">Име:</label>
+                                <input type="text" id="ime" name="ime">
+                            </div>
+                            <div class="form-group">
+                                <label for="prezime">Презиме:</label>
+                                <input type="text" id="prezime" name="prezime">
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="form-section">
+                        <fieldset>
+                            <legend>Кориснички податоци:</legend>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" placeholder="name@domain.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" id="password" name="password">
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="form-section">
+                        <fieldset>
+                            <legend>Пополнете ги и следниве детали:</legend>
+                            <div class="form-group">
+                                <label for="adresa">Адреса:</label>
+                                <input type="text" id="adresa" name="adresa" placeholder="Улица и број">
+                            </div>
+                            <div class="form-group">
+                                <label for="postcode">Телефон:</label>
+                                <input type="text" id="postcode" name="postcode" placeholder="000/000-000">
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <button type="submit" class="submit-btn" onclick="submitForm(event)">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div id="shop">
+        <div id="form-group">
+        <label>Product Name:</label>
+        <input type="text" id="productName" name="productName"><br>
+        <label>Quantity:</label>
+        <input type="text" id="quantity" name="quantity"><br>
+        <label>Unit Price:</label>
+        <input type="text" id="Unit-Price" name="Unit-Price">
+        </div>
+        <button type="submit" class="submit-btn" onclick="addItem(event)">Add item</button>
+
+        <table id="cartTable" style="margin-top: 20px; width: 80%; text-align: center;">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+
+    <footer>
+        <div class="Copyright"><p>OWEB, Copyright © 2024</p></div>
+    </footer>
+
+    <script>
+
+        function showHome() {
+            document.getElementById("main").style.display = "flex"
+            document.getElementById("yourInfo").style.display = "none"
+            document.getElementById("shop").style.display = "none"
+        }
+
+        function showInfo() {
+            document.getElementById("main").style.display = "none"
+            document.getElementById("yourInfo").style.display = "flex"
+            document.getElementById("shop").style.display = "none"
+        }
+        
+        function showShop() {
+            document.getElementById("main").style.display = "none"
+            document.getElementById("yourInfo").style.display = "none"
+            document.getElementById("shop").style.display = "flex"
+            window.onload = document.getElementById("cartTable").style.display = "none"
+        }
+
+        window.onload = document.getElementById("yourInfo").style.display = "none"
+        window.onload = document.getElementById("shop").style.display = "none"
+
+        function submitForm(event) {
+            event.preventDefault()
+
+            const ime = document.getElementById('ime').value
+            const prezime = document.getElementById('prezime').value
+            const email = document.getElementById('email').value
+            const adresa = document.getElementById('adresa').value
+            const postcode = document.getElementById('postcode').value
+
+            if (!ime || !prezime || !email || !adresa || !postcode) {
+                alert("Мора да ја пополните целата форма.")
+                return false
+            } else {
+                alert(ime + " succesfully submited the following contact email: " + email)
+                return true;
+            }
+        }
+
+    
+        const shop = ['apple', 'banana', 'pear', 'strawberry']
+        const cart = []
+
+        function addItem(event) {
+            event.preventDefault()
+
+            const productName = document.getElementById('productName').value.toLowerCase(); 
+            const quantity = parseInt(document.getElementById('quantity').value)
+            const unitPrice = parseInt(document.getElementById('Unit-Price').value)
+
+            if (!shop.includes(productName)) {
+                alert(`Product ${productName} not in shop.`)
+                document.getElementById('productName').value = ''
+                document.getElementById('quantity').value = ''
+                document.getElementById('Unit-Price').value = ''
+                return;
+            }
+
+            if (isNaN(quantity) || quantity <= 0 || isNaN(unitPrice) || unitPrice <= 0) {
+                alert("Please enter valid quantity and price values.")
+                return;
+            }
+
+            const totalPrice = (quantity * unitPrice)
+
+            const cartItem = {
+                product: productName,
+                quantity: quantity,
+                unitPrice: unitPrice,
+                totalPrice: totalPrice
+            };
+
+            cart.push(cartItem);
+
+            updateCartTable();
+
+            document.getElementById('productName').value = ''
+            document.getElementById('quantity').value = ''
+            document.getElementById('Unit-Price').value = ''
+        }
+
+        function updateCartTable() {
+            const tableBody = document.getElementById('cartTable').getElementsByTagName('tbody')[0]
+            tableBody.innerHTML = ''
+
+            let grandTotal = 0
+
+            for (let i = 0; i < cart.length; i++) {
+                const item = cart[i]
+                const row = document.createElement('tr');
+                grandTotal += item.totalPrice
+
+                row.innerHTML = `
+                    <td>${item.product}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.unitPrice}</td>
+                    <td>${item.totalPrice}</td>
+                    <td style="cursor: pointer; color: red; font-weight: bold;" onclick="removeItem(${i})">X</td>
+                `
+
+                tableBody.appendChild(row)
+            }
+
+            const totalRow = document.createElement('tr');
+            totalRow.innerHTML = `
+                <td colspan="3"></td>
+                <td><strong>${grandTotal}</strong></td>
+                <td></td>
+            `
+            tableBody.appendChild(totalRow)
+            document.getElementById("cartTable").style.display = "block"
+            }
+
+
+            function removeItem(index) {
+                cart.splice(index, 1)
+                updateCartTable()
+            }
+
+</script>
+</body>
+</html>
