@@ -96,15 +96,15 @@ ssize_t my_write(struct file* filep, const char* buffer, size_t count, loff_t* o
         return 0;
     }
 
-    if (count > (BUFFER_SIZE - write_pos)) {
-        count = BUFFER_SIZE - write_pos;
+    if (count > (BUFFER_SIZE - w)) {
+        count = BUFFER_SIZE - w;
     }
 
     if (copy_from_user(mem + write_pos, buffer, count)) {
         return -EFAULT;
     }
 
-    write_pos += count;
+    w += count;
 
     if (strcmp(last_command, KEY_TEMP_UNLOCK) == 0) {
         unlocked = 0;
