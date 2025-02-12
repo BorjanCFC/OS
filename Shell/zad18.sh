@@ -32,7 +32,7 @@ start=1
 for file in "${output_files[@]}"; do
     end=$((start + linii - 1))
     
-    # ??????
+    sed -n "${start},${end}p" "$input_file" > "$file"
 
     start=$((end + 1))
 done
