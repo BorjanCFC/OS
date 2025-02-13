@@ -29,13 +29,11 @@ int main(int argc, char *argv[]) {
         perror("fork failed");
         return 1;
     } else if (dete == 0) { 
-        execlp("./programa2", "programa2", argv[1], "second", NULL);
+        execlp("./programa2", "programa2", argv[1], "1", NULL);
         perror("execlp failed");
         return 1;
     } else { 
-        execlp("./programa2", "programa2", argv[1], "first", NULL);
-        perror("execlp failed");
-        return 1;
+        wait(NULL);
     }
 }
 
@@ -55,6 +53,7 @@ int main(int argc, char *argv[]) {
 
 int *data;
 int N;
+char proces[2];
 
 typedef struct {
     int thread_id;
@@ -68,16 +67,10 @@ void *prebaraj(void *arg) {
     for (int i = 0; i < 5; i++) {
         int idx = rand() % ARRAY_SIZE;
 
-        int pid = 0;
-
-        if (argc == 3 && strcmp(argv[2], "first") == 0) {
-            pid = 1;
-        }
-
         if (data[idx] == N) {
             found_count++;
-            if (pid) {
-                data[idx] = N + 1;  
+            if (strcmp(proces, "1") == 0) {
+                data[idx] = N + 1;
             } else {
                 data[idx] = N - 1; 
             }
@@ -97,7 +90,7 @@ int main(int argc, char *argv[]) {
 
     N = atoi(argv[1]);
 
-    char *proces = argv[2];
+    proces = argv[2];
 
     int fd = open("dat.txt", O_RDWR | O_CREAT, 0666);
     if (fd == -1) {
@@ -138,4 +131,7 @@ int main(int argc, char *argv[]) {
     }
 
     printf("Process %s found N %d times in total\n", proces, maxCount);
+
+    munmap(data, ARRAY_SIZE * sizeof(int));
+    close(fd);
 }

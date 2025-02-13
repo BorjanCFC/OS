@@ -31,13 +31,11 @@ int main(int argc, char *argv[]) {
         perror("fork failed");
         return 1;
     } else if (dete == 0) { 
-        execlp("./programa2", "programa2", argv[1], "second", NULL);
+        execlp("./programa2", "programa2", argv[1], "1", NULL);
         perror("execlp failed");
         return 1;
     } else { 
-        execlp("./programa2", "programa2", argv[1], "first", NULL);
-        perror("execlp failed");
-        return 1;
+        wait(NULL);
     }
 }
 
@@ -55,9 +53,8 @@ int main(int argc, char *argv[]) {
 #define NUM_THREADS 5
 #define ARRAY_SIZE 100
 
-int *data;
-int N;
-int processing = 0; 
+int *data;  
+int N;     
 
 typedef struct {
     int thread_id;
@@ -69,27 +66,29 @@ void *prebaraj(void *arg) {
     int found_count = 0;
 
     for (int i = 0; i < 10; i++) {
-        int idx = rand() % ARRAY_SIZE;
+        int idx = rand() % (ARRAY_SIZE - 1) + 1; 
 
-        while (processing) {
+        while (data[0] == 1) {
             sleep(10); 
         }
 
+        data[0] = 1;
+
         if (data[idx] == N) {
-            processing = 1; 
             found_count++;
-   
+
             for (int j = idx; j < ARRAY_SIZE - 1; j++) {
                 data[j] = data[j + 1];
             }
             data[ARRAY_SIZE - 1] = 0; 
-
-            processing = 0;  
         }
-        sleep(5);  
+
+        data[0] = 0;
+
+        sleep(1); 
     }
 
-    tdata->found_counter = found_count;
+    tdata->found_counter = found_count;  
     pthread_exit(NULL);
 }
 
@@ -115,6 +114,8 @@ int main(int argc, char *argv[]) {
         perror("mmap failed");
         return 1;
     }
+
+    data[0] = 0;
 
     pthread_t nitki[NUM_THREADS];
     info_t infos[NUM_THREADS];
